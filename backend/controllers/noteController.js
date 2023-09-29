@@ -1,17 +1,12 @@
 import Note from "../models/noteModel.js";
 import asyncHandler from "express-async-handler";
 
-// @desc    Get logged in user notes
-// @route   GET /api/notes
-// @access  Private
 const getNotes = asyncHandler(async (req, res) => {
   const notes = await Note.find({ user: req.user._id });
   res.json(notes);
 });
 
-//@description     Fetch single Note
-//@route           GET /api/notes/:id
-//@access          Public
+
 const getNoteById = asyncHandler(async (req, res) => {
   const note = await Note.findById(req.params.id);
 
@@ -24,9 +19,7 @@ const getNoteById = asyncHandler(async (req, res) => {
   res.json(note);
 });
 
-//@description     Create single Note
-//@route           GET /api/notes/create
-//@access          Private
+
 const CreateNote = asyncHandler(async (req, res) => {
   const { title, content, category } = req.body;
 
@@ -42,9 +35,7 @@ const CreateNote = asyncHandler(async (req, res) => {
   }
 });
 
-//@description     Delete single Note
-//@route           GET /api/notes/:id
-//@access          Private
+
 const DeleteNote = asyncHandler(async (req, res) => {
   const note = await Note.findById(req.params.id);
 
@@ -62,9 +53,7 @@ const DeleteNote = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update a note
-// @route   PUT /api/notes/:id
-// @access  Private
+
 const UpdateNote = asyncHandler(async (req, res) => {
   const { title, content, category } = req.body;
 
